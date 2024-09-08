@@ -1,0 +1,35 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "author": "LayerX developers",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "gen": "pnpm gen:proto && pnpm gen:gql",
+    "gen:gql": "graphql-codegen",
+    "gen:proto": "buf generate proto"
+  },
+  "dependencies": {
+    "@bufbuild/protobuf": "^1.9.0",
+    "@connectrpc/connect": "^1.4.0",
+    "@connectrpc/connect-node": "^1.4.0",
+    "@hono/node-server": "^1.11.1",
+    "@hono/zod-openapi": "^0.11.0",
+    "@hono/zod-validator": "^0.2.1",
+    "graphql": "^16.8.1",
+    "graphql-yoga": "^5.3.1",
+    "hono": "^4.3.4",
+    "ulid": "^2.3.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.31.0",
+    "@bufbuild/protoc-gen-es": "^1.9.0",
+    "@connectrpc/protoc-gen-connect-es": "^1.4.0",
+    "@eddeee888/gcg-typescript-resolver-files": "^0.8.0",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@types/node": "^20.11.17",
+    "tsx": "^4.7.1"
+  }
+}

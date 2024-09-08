@@ -1,0 +1,36 @@
+type Task {
+  id: ID!
+  title: String!
+  status: TaskStatus!
+}
+
+enum TaskStatus {
+  NOT_STARTED
+  DONE
+}
+
+input CreateTaskInput {
+  title: String!
+}
+
+type CreateTaskPayload {
+  task: Task!
+}
+
+input UpdateTaskStatusInput {
+  id: ID!
+  status: TaskStatus!
+}
+
+type UpdateTaskStatusPayload {
+  task: Task!
+}
+
+extend type Query {
+  tasks: [Task!]!
+}
+
+extend type Mutation {
+  createTask(input: CreateTaskInput!): CreateTaskPayload!
+  updateTaskStatus(input: UpdateTaskStatusInput!): UpdateTaskStatusPayload!
+}

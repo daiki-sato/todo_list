@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package task.v1;
+
+message Task {
+  // Required. The task's ID.
+  string id = 1;
+  // Required. The task's title.
+  string title = 2;
+  // Required. The task's status.
+  Status status = 3;
+
+  enum Status {
+    STATUS_UNSPECIFIED = 0;
+    // The task is open.
+    STATUS_NOT_STARTED = 1;
+    // The task is done.
+    STATUS_DONE = 2;
+  }
+}
+
+message ListTasksRequest {}
+
+message ListTasksResponse {
+  // Required. The list of tasks.
+  repeated Task tasks = 1;
+}
+
+message CreateTaskRequest {
+  // Required. The task's title.
+  string title = 1;
+}
+
+message CreateTaskResponse {
+  // Required. The created task.
+  Task task = 1;
+}
+
+message UpdateTaskStatusRequest {
+  // Required. The task's ID.
+  string id = 1;
+  // Required. The task's new status.
+  Task.Status status = 2;
+}
+
+message UpdateTaskStatusResponse {
+  // Required. The updated task.
+  Task task = 1;
+}
+
+service TaskService {
+  // List tasks.
+  rpc ListTasks(ListTasksRequest) returns (ListTasksResponse);
+  // Creates a task.
+  rpc CreateTask(CreateTaskRequest) returns (CreateTaskResponse);
+  // Updates a task's status.
+  rpc UpdateTaskStatus(UpdateTaskStatusRequest) returns (UpdateTaskStatusResponse);
+}
+
+message Database {
+  // Required. The list of tasks.
+  repeated Task tasks = 1;
+}
